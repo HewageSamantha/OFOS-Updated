@@ -1,6 +1,7 @@
 package LoginServlet;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterDao {
     private String dburl = "jdbc:mysql://localhost:3306/ofos";
     private String dbuname = "root";
-    private String dbpassword = "plb123";
+    private String dbpassword = "admin123";
     private String dbdriver = "com.mysql.cj.jdbc.Driver";
 
     public void loadDriver(String dbDriver) {
@@ -52,7 +53,7 @@ public class RegisterDao {
 
             // Execute the query and get the UID
             uidStmt.execute();
-            var resultSet = uidStmt.getResultSet();
+            ResultSet resultSet = uidStmt.getResultSet();
             if (resultSet.next()) {
                 UID = resultSet.getInt("UID");
             }

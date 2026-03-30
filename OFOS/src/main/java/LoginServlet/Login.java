@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
         // Database connection parameters
         String dbUrl = "jdbc:mysql://localhost:3306/ofos";
         String dbUsername = "root";
-        String dbPassword = "plb123";
+        String dbPassword = "admin123";
 
         // JDBC connection variables
         Connection conn = null;
@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
                 session.setAttribute("email", email);
                 session.setAttribute("userType", userType);
 
-                if ("customer".equals(userType)) {
+               /* if ("customer".equals(userType)) {
                     // Retrieve customer details from the database
                     String customerInfoQuery = "SELECT u.email, u.password, c.name, c.phone_number FROM Users u " +
                                               "JOIN Customer c ON u.UID = c.UID " +
@@ -84,26 +84,82 @@ public class Login extends HttpServlet {
                         session.setAttribute("password", customerPassword);
 
                         response.sendRedirect("index.jsp");
+                        return;
                     } else {
                         // Handle the case where customer details are not found
+                    	       response.getWriter().println("Customer details not found!");
+                    	}
                     }
                 } else if ("admin".equals(userType)) {
                     response.sendRedirect("Admin.jsp");
+                    return;
                 } else if ("staff".equals(userType)) {
                     response.sendRedirect("Staff.jsp");
+                    return;
                 } else if ("deliverer".equals(userType)) {
                     response.sendRedirect("delivery.jsp");
+                    return;
                 } else {
                     // Handle other types if needed
                 }
             } else {
                 // User not found
                 response.sendRedirect("Login.jsp"); // Redirect back to the login page
+                return;
+            } */
+                
+                
+                if ("customer".equalsIgnoreCase(userType.trim())) {
+                    String customerInfoQuery = "SELECT u.email, u.password, c.name, c.phone_number FROM Users u " +
+                                               "JOIN Customer c ON u.UID = c.UID " +
+                                               "WHERE u.email = ?";
+                    pstmt = conn.prepareStatement(customerInfoQuery);
+                    pstmt.setString(1, email);
+                    rs = pstmt.executeQuery();
+
+                    if (rs.next()) {
+                        session.setAttribute("name", rs.getString("name"));
+                        session.setAttribute("email", rs.getString("email"));
+                        session.setAttribute("phone_number", rs.getString("phone_number"));
+                        session.setAttribute("password", rs.getString("password"));
+
+                        response.sendRedirect("index.jsp");
+                        return;
+                    }
+                    
+                
+                    
+                    else {
+                        response.getWriter().println("Customer details not found!");
+                        return;
+                    }
+
+                } else if ("admin".equalsIgnoreCase(userType.trim())) {
+                    response.sendRedirect("Admin.jsp");
+                    return;
+
+                } else if ("staff".equalsIgnoreCase(userType.trim())) {
+                    response.sendRedirect("Staff.jsp");
+                    return;
+
+                } else if ("deliverer".equalsIgnoreCase(userType.trim())) {
+                    response.sendRedirect("delivery.jsp");
+                    return;
+
+                } else {
+                    response.getWriter().println("Unknown user type!");
+                    return;
+                }
+                
+            } else {
+                response.getWriter().println("Unknown user type!");
+                return;
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
+
         } finally {
-            // Close resources
             try {
                 if (rs != null)
                     rs.close();
@@ -115,5 +171,6 @@ public class Login extends HttpServlet {
                 e.printStackTrace();
             }
         }
-    }
+
+            } 
 }
