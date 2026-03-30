@@ -27,8 +27,13 @@ public class Login extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // Database connection parameters
-        String dbUrl = "jdbc:mysql://localhost:3306/ofos";
+          // Database connection parameters
+          // MySQL JDBC URL for local database 'ofos'
+          // useSSL=false → disables SSL for local development
+          // allowPublicKeyRetrieval=true → allows secure password exchange when SSL is off
+       
+        
+        String dbUrl = "jdbc:mysql://localhost:3306/ofos?useSSL=false&allowPublicKeyRetrieval=true"; 
         String dbUsername = "root";
         String dbPassword = "admin123";
 
