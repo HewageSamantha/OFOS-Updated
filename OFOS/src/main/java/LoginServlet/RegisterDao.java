@@ -1,7 +1,7 @@
 package LoginServlet;
 
+import java.sql.ResultSet; // Used to store and process results returned from database queries
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletResponse;
 
 public class RegisterDao {
-    private String dburl = "jdbc:mysql://localhost:3306/ofos";
+    private String dburl = "jdbc:mysql://localhost:3306/ofos?useSSL=false&allowPublicKeyRetrieval=true";
     private String dbuname = "root";
     private String dbpassword = "admin123";
     private String dbdriver = "com.mysql.cj.jdbc.Driver";
@@ -53,6 +53,8 @@ public class RegisterDao {
 
             // Execute the query and get the UID
             uidStmt.execute();
+            
+            // Retrieve the result set after executing the query
             ResultSet resultSet = uidStmt.getResultSet();
             if (resultSet.next()) {
                 UID = resultSet.getInt("UID");
