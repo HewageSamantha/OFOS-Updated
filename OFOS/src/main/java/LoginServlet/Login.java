@@ -41,6 +41,29 @@ public class Login extends HttpServlet {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+        
+        // STEP 1 : Add Input Validation
+        if(email == null || password == null ||
+        		   email.trim().isEmpty() || password.trim().isEmpty()) {
+
+        		    response.getWriter().println("Invalid input!");
+        		    return;
+        		}
+
+        		// Basic validation to block SQL patterns
+        		if(email.contains("'") || email.contains("--") || email.contains(";")||
+        				password.contains("'") || password.contains("--") || password.contains(";")){ //Add password check also for SQL patterns
+        		    response.getWriter().println("Invalid email format!");
+        		    return;
+        		}   //input validation finishes
+        		
+        		//  STEP 2: Length validation (ADD HERE)
+        		
+        		if(email.length() > 50 || password.length() > 50) {
+        		    response.getWriter().println("Input too long!");
+        		    return;
+        		}
+        
 
         try {
             // Load the database driver
@@ -48,6 +71,9 @@ public class Login extends HttpServlet {
 
             // Connect to the database
             conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+            
+          
+            		
 
             // Prepare SQL query to retrieve user information
             String sql = "SELECT UID, type FROM Users WHERE email = ? AND password = ?";
