@@ -36,6 +36,48 @@ public class Register extends HttpServlet {
 		String phone=request.getParameter("phone");
 		String password=request.getParameter("password");
 		
+		// Null check FIRST
+		if(email == null || uname == null || password == null || phone == null) {
+		    response.getWriter().println("Invalid input!");
+		    return;
+		}
+
+		// Trim AFTER null check
+		uname = uname.trim();
+		email = email.trim();
+		phone = phone.trim();
+		password = password.trim();
+		
+	
+		// Input validation (ONLY empty check now)
+		if(email.isEmpty() || uname.isEmpty() || password.isEmpty() || phone.isEmpty()) {
+		    response.getWriter().println("Invalid input!");
+		    return;
+		}
+		
+		
+		// Email format validation
+		if(!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+		    response.getWriter().println("Invalid email format!");
+		    return;
+		}
+
+		// Block SQL patterns
+		if(email.contains("'") || email.contains("--") || email.contains(";") ||
+		   uname.contains("'") || uname.contains("--") || uname.contains(";") ||
+		   password.contains("'") || password.contains("--") || password.contains(";") ||
+		   phone.contains("'") || phone.contains("--") || phone.contains(";")) {
+
+		    response.getWriter().println("Invalid input format!");
+		    return;
+		}
+
+		// Length validation
+		if(email.length() > 50 || uname.length() > 50 || password.length() > 50 || phone.length() > 15) {
+		    response.getWriter().println("Input too long!");
+		    return;
+		}
+		
 		Member member=new Member(uname,email, phone,password);
 		RegisterDao rdao=new RegisterDao();
 		String result=rdao.insert(member, response);
