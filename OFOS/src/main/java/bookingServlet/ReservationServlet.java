@@ -35,9 +35,9 @@ public class ReservationServlet extends HttpServlet {
         int persons = Integer.parseInt(request.getParameter("persons"));
 
         // Database connection parameters
-        String dbUrl = "jdbc:mysql://localhost:3306/ofos";
+        String dbUrl = "jdbc:mysql://localhost:3306/ofos?useSSL=false&allowPublicKeyRetrieval=true";
         String dbUsername = "root";
-        String dbPassword = "plb123";
+        String dbPassword = "admin123";
 
         // JDBC connection variables
         Connection conn = null;
