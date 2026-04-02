@@ -93,51 +93,7 @@ public class Login extends HttpServlet {
                 session.setAttribute("email", email);
                 session.setAttribute("userType", userType);
 
-               /* if ("customer".equals(userType)) {
-                    // Retrieve customer details from the database
-                    String customerInfoQuery = "SELECT u.email, u.password, c.name, c.phone_number FROM Users u " +
-                                              "JOIN Customer c ON u.UID = c.UID " +
-                                              "WHERE u.email = ?";
-                    pstmt = conn.prepareStatement(customerInfoQuery);
-                    pstmt.setString(1, email);
-                    rs = pstmt.executeQuery();
-
-                    if (rs.next()) {
-                        String customerName = rs.getString("name");
-                        String customerEmail = rs.getString("email");
-                        String customerPhoneNumber = rs.getString("phone_number");
-                        String customerPassword = rs.getString("password");
-
-                        // Store customer details in the session
-                        session.setAttribute("name", customerName);
-                        session.setAttribute("email", customerEmail);
-                        session.setAttribute("phone_number", customerPhoneNumber);
-                        session.setAttribute("password", customerPassword);
-
-                        response.sendRedirect("index.jsp");
-                        return;
-                    } else {
-                        // Handle the case where customer details are not found
-                    	       response.getWriter().println("Customer details not found!");
-                    	}
-                    }
-                } else if ("admin".equals(userType)) {
-                    response.sendRedirect("Admin.jsp");
-                    return;
-                } else if ("staff".equals(userType)) {
-                    response.sendRedirect("Staff.jsp");
-                    return;
-                } else if ("deliverer".equals(userType)) {
-                    response.sendRedirect("delivery.jsp");
-                    return;
-                } else {
-                    // Handle other types if needed
-                }
-            } else {
-                // User not found
-                response.sendRedirect("Login.jsp"); // Redirect back to the login page
-                return;
-            } */
+               
                 
                 
                 if ("customer".equalsIgnoreCase(userType.trim())) {
