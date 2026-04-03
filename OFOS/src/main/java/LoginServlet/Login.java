@@ -22,10 +22,39 @@ public class Login extends HttpServlet {
     }
 
     @SuppressWarnings("resource")
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        //STEP 1 (CSRF)
+    	// Generate CSRF Token
+        String csrfToken = java.util.UUID.randomUUID().toString();
+
+        // Store in session
+        request.getSession().setAttribute("csrfToken", csrfToken);
+
+        // Send to JSP
+        request.setAttribute("csrfToken", csrfToken);
+
+        // Forward to login page
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
+    }
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        
+     //  STEP 3:( CSRF ) TOKEN VALIDATION
+        HttpSession session = request.getSession(false);
+        String sessionToken = (session != null) ? (String) session.getAttribute("csrfToken") : null;
+        String requestToken = request.getParameter("csrfToken");
+
+        if (sessionToken == null || requestToken == null || !sessionToken.equals(requestToken)) {
+            response.getWriter().println("CSRF attack detected!");
+            return;
+        }
 
           // Database connection parameters
           // MySQL JDBC URL for local database 'ofos'
@@ -89,7 +118,7 @@ public class Login extends HttpServlet {
                 String userType = rs.getString("type");
 
                 // Create a session and store user information
-                HttpSession session = request.getSession();
+                session = request.getSession();
                 session.setAttribute("email", email);
                 session.setAttribute("userType", userType);
 
