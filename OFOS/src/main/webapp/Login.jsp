@@ -26,6 +26,8 @@
 						<h4>Login into your account</h4>
 					</div>
 					<form method = "post" action = "LoginServlet">
+					// STEP 2 (ADD CSRF TOKEN)
+					<input type="hidden" name="csrfToken" value="${csrfToken}">
 						<div class="form-input">
 							<span><i class="fa fa-envelope"></i></span>
 							<input type="email" name = "email" placeholder="Email Address" required>
