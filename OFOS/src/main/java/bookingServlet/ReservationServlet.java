@@ -32,7 +32,40 @@ public class ReservationServlet extends HttpServlet {
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
         String reservationDate = request.getParameter("reservation_date");
-        int persons = Integer.parseInt(request.getParameter("persons"));
+        
+     // Input validation
+        if (name == null || phone == null || reservationDate == null ||
+            name.trim().isEmpty() || phone.trim().isEmpty() || reservationDate.trim().isEmpty()) {
+
+            response.getWriter().println("Invalid input!");
+            return;
+        }
+      
+        int persons = 0;
+
+        try {
+            persons = Integer.parseInt(request.getParameter("persons"));
+        } catch (NumberFormatException e) {
+            response.getWriter().println("Invalid number of persons!");
+            return;
+        }
+        
+        name = name.trim();
+        phone = phone.trim();
+        reservationDate = reservationDate.trim();
+        
+     // Phone format validation (ONLY numbers, 10 digits)
+        if (!phone.matches("[0-9]{10}")) {
+            response.getWriter().println("Invalid phone number!");
+            return;
+        }
+        
+        if (persons <= 0 || persons > 20) {
+            response.getWriter().println("Invalid number of persons!");
+            return;
+        }
+        
+        
 
         // Database connection parameters
         String dbUrl = "jdbc:mysql://localhost:3306/ofos?useSSL=false&allowPublicKeyRetrieval=true";
