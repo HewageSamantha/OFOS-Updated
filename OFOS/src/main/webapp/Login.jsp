@@ -53,12 +53,14 @@
 							<button type="submit" class="btn">Login</button>
 						</div>
 						<div class="text-center mb-2">
-							<div class="mb-3" style="color: #777">or login with</div>
+							<div class="mb-3" style="color: #777"></div>
 
 							<a href="" class="btn btn-social btn-facebook">facebook</a>
 
-							<a href="" class="btn btn-social btn-google">google</a>
-
+							<a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=721085556144-mqt7r1t19j25ar9kd73mmi1h5alfcao2.apps.googleusercontent.com&redirect_uri=http://localhost:8081/OFOS/google-login&response_type=code&scope=email%20profile"
+							class="btn btn-social btn-google">Login with Google
+							</a> 
+							
 							<a href="" class="btn btn-social btn-twitter">twitter</a>
 						</div>
 						<div style="color: #777">Don't have an account
@@ -70,4 +72,4 @@
 		</div>
 	</div>
 </body>
-</html>
+</html>	 
