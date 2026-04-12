@@ -30,7 +30,20 @@ public class Register extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
+	
+	
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String sessionToken = (String) request.getSession().getAttribute("csrfToken");
+		String requestToken = request.getParameter("csrfToken");
+
+		if (sessionToken == null || requestToken == null || !sessionToken.equals(requestToken)) {
+		    response.getWriter().println("CSRF Attack Detected!");
+		    return;
+		}
 		String uname=request.getParameter("name");
 		String email=request.getParameter("email");
 		String phone=request.getParameter("phone");

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%
+    String csrfToken = java.util.UUID.randomUUID().toString();
+    session.setAttribute("csrfToken", csrfToken);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +30,7 @@
                         <h4>Create an account</h4>
                     </div>
                     <form action = "Register" method = "post" >
+                    <input type="hidden" name="csrfToken" value="<%= csrfToken %>">
                         <div class="form-input">
                             <span><i class="fa fa-user"></i></span>
                             <input type="text" name= "name" placeholder="Full Name" required>
