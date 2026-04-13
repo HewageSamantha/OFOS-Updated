@@ -25,6 +25,13 @@ public class ReservationServlet extends HttpServlet {
     @SuppressWarnings("resource")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	
+         // Anti-Clickjacking Header
+        
+        response.setHeader("X-Frame-Options", "DENY");
+
+        
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email"); // Assuming the user is logged in
 
