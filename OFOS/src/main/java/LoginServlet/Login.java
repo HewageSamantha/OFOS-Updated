@@ -36,6 +36,14 @@ public class Login extends HttpServlet {
 
         // Send to JSP
         request.setAttribute("csrfToken", csrfToken);
+        
+     // CSP Header
+        response.setHeader("Content-Security-Policy",
+            "default-src 'self'; script-src 'self'; style-src 'self';");
+        
+        // Anti-Clickjacking Header
+        
+        response.setHeader("X-Frame-Options", "DENY");
 
         // Forward to login page
         request.getRequestDispatcher("Login.jsp").forward(request, response);
@@ -43,11 +51,16 @@ public class Login extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+		 // CSP Header
+		
+		response.setHeader("Content-Security-Policy",
+		        "default-src 'self'; script-src 'self'; style-src 'self';");
+		
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         
      //  STEP 3:( CSRF ) TOKEN VALIDATION
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
         String sessionToken = (session != null) ? (String) session.getAttribute("csrfToken") : null;
         String requestToken = request.getParameter("csrfToken");
 
@@ -139,6 +152,8 @@ public class Login extends HttpServlet {
                         session.setAttribute("phone_number", rs.getString("phone_number"));
                         session.setAttribute("password", rs.getString("password"));
 
+                       
+                        session.removeAttribute("csrfToken");  
                         response.sendRedirect("index.jsp");
                         return;
                     }
