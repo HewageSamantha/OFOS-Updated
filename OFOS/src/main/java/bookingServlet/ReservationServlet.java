@@ -86,7 +86,7 @@ public class ReservationServlet extends HttpServlet {
         reservationDate = reservationDate.trim();
        
         
-     // Phone format validation (ONLY numbers, 10 digits)
+     //  format validation (ONLY numbers, 10 digits)
         if (!phone.matches("[0-9]{10}")) {
             response.getWriter().println("Invalid phone number!");
             return;
