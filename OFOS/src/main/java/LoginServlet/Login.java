@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
         response.setHeader("Content-Security-Policy",
             "default-src 'self'; script-src 'self'; style-src 'self';");
         
-        // Anti-Clickjacking Header
+        // Anti-Clickjacking Header applied
         
         response.setHeader("X-Frame-Options", "DENY");
 
@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		
-		 // CSP Header applied
+		 // CSP Header applied 
 		
 		response.setHeader("Content-Security-Policy",
 		        "default-src 'self'; script-src 'self'; style-src 'self';");
