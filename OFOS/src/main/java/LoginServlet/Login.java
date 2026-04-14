@@ -37,7 +37,8 @@ public class Login extends HttpServlet {
         // Send to JSP
         request.setAttribute("csrfToken", csrfToken);
         
-     // CSP Header
+     // CSP Header applied
+        
         response.setHeader("Content-Security-Policy",
             "default-src 'self'; script-src 'self'; style-src 'self';");
         
@@ -51,7 +52,8 @@ public class Login extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-		 // CSP Header
+		
+		 // CSP Header applied
 		
 		response.setHeader("Content-Security-Policy",
 		        "default-src 'self'; script-src 'self'; style-src 'self';");
