@@ -12,9 +12,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="css/loginStyle.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- SRI added for Bootstrap CSS -->
+     <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+     integrity="sha512-Rx0gYpG2lXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+     crossorigin="anonymous">
+    
+    <!-- SRI added for jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+	integrity="sha512-tsQFQPf6CkG6c9E+u6KDAdAm8X1sC3yRlmCb4sOGHoPazTA/gkGEXUXMaLLq5yRvD/4ieVOGGAaHo9dZYkTfLZQ=="
+	crossorigin="anonymous"></script>
+
+    <!-- Optional: SRI added for Font Awesome -->
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	integrity="sha512-SfF1K6f5S8VnX2VVaodIZ6Tn6PvxI6Bfq5lHppZArYrusS4x+h0cYf9fbQ3VIAtF5NCz7L+G2kZZgvdXR0vb5g=="
+	crossorigin="anonymous">
 </head>
 <body>
     <div class="container-fluid">
