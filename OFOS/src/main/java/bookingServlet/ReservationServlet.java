@@ -72,7 +72,7 @@ public class ReservationServlet extends HttpServlet {
          return;
      }
         
-     // Input validation
+     // Input validation applied
         if (name == null || phone == null || reservationDate == null ||
             name.trim().isEmpty() || phone.trim().isEmpty() || reservationDate.trim().isEmpty()) {
 
@@ -91,6 +91,8 @@ public class ReservationServlet extends HttpServlet {
             response.getWriter().println("Invalid phone number!");
             return;
         }
+        
+        // Numeric validation
         
         if (persons <= 0 || persons > 20) {
             response.getWriter().println("Invalid number of persons!");
