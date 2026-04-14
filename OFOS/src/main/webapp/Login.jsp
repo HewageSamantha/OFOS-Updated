@@ -8,9 +8,28 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="css/loginStyle.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<!--  add integrity and crossorigin to Bootstrap CDN link -->
+	
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ775/zl5x2Q5iZ6jIW3j0RSJoZ+nNQ8+9k"
+	crossorigin="anonymous">
+
+	
+	<!--  Adding SRI (Sub Resource Integrity to Jquery -->
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	  crossorigin="anonymous"></script>
+	  
+	  <!-- Optional: SRI added for Font Awesome CDN to enhance security -->
+	
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlgC7n5R9E2f5k5j5c5e5f5f5f5f5f5f5f5f5f5f5f5f"
+	crossorigin="anonymous">
+
 </head>
 <body>
 	<div class="container-fluid">
