@@ -75,7 +75,7 @@ if (session.getAttribute("email") == null) {
                 <a class="nav-link" href="about.html">About</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="book.html">Book Table <span class="sr-only">(current)</span> </a>
+                <a class="nav-link" href="book.jsp">Book Table <span class="sr-only">(current)</span> </a>
               </li>
             </ul>
             <div class="user_option">
